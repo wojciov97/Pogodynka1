@@ -1,0 +1,2 @@
+This aplication is conecting to api server and returns a wheater data.In class DataEntry are methods to set and get data.
+In Pogodynka.class is method to parse XML and to connect to api.
