@@ -2,8 +2,10 @@
   <library name="miglayout15-swing">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/miglayout15-swing.jar!/" />
+      <root url="file://C:/Program Files (x86)/Microsoft SQL Server" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://C:/Program Files (x86)/Microsoft SQL Server" recursive="false" />
   </library>
 </component>
