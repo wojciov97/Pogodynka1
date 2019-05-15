@@ -135,13 +135,17 @@ public class Pogodynka extends JFrame {
     button2.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-           java.util.List<DataEntry> loadedentry = null;
+          DataEntry loadedentry = null;
             loadedentry = DataBase.selectEntry();
             dataSet.eraseEntries();
-
-            for (DataEntry ent : loadedentry) {
-                dataSet.addEntry(ent);
-            }
+            miasto.setText(loadedentry.getCity()+"\n"+miasto.getText());
+            kraj.setText(loadedentry.getCountry()+"\n"+kraj.getText());
+            cinienie.setText(Float.toString(loadedentry.getPressure())+"\n"+cinienie.getText());
+            temperatura.setText(Float.toString(loadedentry.getTemperature())+"\n"+temperatura.getText());
+            DataBase.deleteAllEntries();
+//            for (DataEntry ent : loadedentry) {
+//                dataSet.addEntry(ent);
+//            }
           }
     });
 

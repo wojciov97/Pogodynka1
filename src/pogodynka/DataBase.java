@@ -24,7 +24,7 @@ public class DataBase {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("INSERT INTO " + table + "(ID, CITY, COUNTRY, TEMPERATURE, PRESSURE) values (?, ?, ?, ?, ?)");
-            preparedStatement.setInt(1, LocalDateTime.now().hashCode());
+            preparedStatement.setInt(1, id);
             preparedStatement.setString(2, entry.getCountry()  );
             preparedStatement.setString(3, entry.getCity());
             preparedStatement.setFloat(4,   entry.getTemperature()-273);
@@ -35,8 +35,8 @@ public class DataBase {
         }
     }
 
-    public static java.util.List<DataEntry> selectEntry() {
-        java.util.List<DataEntry> entry = new java.util.LinkedList<DataEntry>();
+    public static DataEntry selectEntry() {
+        DataEntry entry = new DataEntry();
         try {
             statement = connection.createStatement();
             ResultSet results = statement.executeQuery("SELECT * FROM " + table);
@@ -47,8 +47,8 @@ public class DataBase {
                 String city = results.getString("City");
                 float temperature = results.getFloat("Temperature");
                 float pressure = results.getFloat("Pressure");
-               DataEntry dentry = new DataEntry(city, country, temperature, pressure);
-                entry.add(dentry);
+               entry = new DataEntry(city, country, temperature, pressure);
+
             }
             results.close();
             statement.close();
@@ -58,6 +58,13 @@ public class DataBase {
 
         return entry;
     }
-
+    public static void deleteAllEntries() {
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM " + table);
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
+    }
 
 }
